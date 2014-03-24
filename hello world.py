@@ -1,3 +1,3 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
-echo "Hello World!"
+print "Hello World!"
