@@ -22,9 +22,9 @@ variable names that work:
 
 variable names that don't work:
 
-- ``!!!HEY`
+- `!!!HEY`
 - `8888888`
-- ``~ffffffffffff`
+- `~ffffffffffff`
 
 there are different data types but right now there's 3 main ones we'll worry about:
 
@@ -67,6 +67,7 @@ you can do this a few ways
 name = "josh"
 age = 16
 print("my name is " + name + " and I am " + age + " years old")
+```
 
 that method sucks so some cool dudes over at python thought of some other ways
 
@@ -132,6 +133,7 @@ def greeting(name, age):
   print("my name is {} and i am {} years old".format(name, age))
 
 greeting("josh", 16)
+greeting("adam", 72)
 ```
 
 see how that works? meaning you can define the skeleton of the function and get the values later and use them when calling the function. pretty sick i kno. :snowboarder: :100: ill af
@@ -141,18 +143,44 @@ yeah so that's the basics of functions.
 
 ## classes
 
-THIS IS WHERE PROGRAMMING GETS GOOD. it's 12:40am right now and i'm tired so I'll add this later
+THIS IS WHERE PROGRAMMING GETS GOOD.
 
-SNEAK PEEK!!!
+alright so think over how functions work and how they could be useful. you can use them to do a set of tasks pretty quickly, but what if we wanted to make something like a character that has a list of functions (walk, run, jump) and we wanted that character to have different traits (speed, jumpHeight) etc. and say we had 5 characters. this means we have to create separate functions for 5 characters. that's cumbersome. so we have classes and objects instead.
+
+think of classes like a blueprint. most programming tutorials say that so I'll do with it.
+
+once you've defined a class you want to create a variable that has those attributes and functions (methods), so we can assign it like any other variable in python.
+
+defining a class is pretty simple. it goes by the same syntax as defining a function except use `class` instead of `def`. inside the class definition we can define things like variables and functions that our object will get. let me make an example.
 
 ```python
 class Person():
-    def __init__(self, name, age):
-      self.name = name
-      self.age  = age
-    def greeting(self):
-      print("my name's {} and i'm {} years old".format(self.name, self.age))
+  name = "josh"
+  age = 16
+  def info(self):
+    print("{} is {} years old".format(self.name, str(self.age)))
+  def jump(self):
+    print("{} jumped!".format(self.name))
 
-josh = Person("Josh", 16)
-josh.greeting() # my name's Josh and i'm 16 years old
+josh = Person()
+josh.jump()
 ```
+
+when we assign `josh = Person()` (remember the `()`) we're creating what's called an instance of the class. `josh` is now our object to work with.
+
+you're probably wondering what the `self` thing is though. it's gonna be weird explaining this (it always is the first time) but hopefully you get the hang of it.
+
+### self
+`self` is essentially what refers to the object. `self.name` in a class refers to the name variable of itself. not the class, but the instance. hopefully this is making sense. python automatically throws `self` into each parameter inside a class' functions/methods (call them methods if they're inside a class, functions if they're not). we still have to explicitly add `self` to our parameters anyways, though. don't ask me why.
+
+also when you use a function from a class you use the dot notation (`instance.method()`) (always remember `()` on functions/methods!)
+
+hopefully you understand the block of code above now. let's get into shit like `__init__()`
+
+### __init__()
+
+`__init__()` is one hell of a method because it's defined already in python. you throw it in any class and it automatically runs when an instance is created. meaning if we defined a print statement inside `__init__()`, it would run once we go `josh = Person()`, or whatever the variable and class are. printing text on instantiating (creating an instance) isn't too helpful, though. what we want to do here is usually throw parameters into variables we can use in the class.
+
+so say you wanted to define a Person class but you don't want to define the name of the person yet (because that's like hardcoding the blueprint, we want to leave it as definable at instantiation as possible). we can use the `__init__()` method for this to define variables in self. init takes the parameters you want to give `Person()`.  kinda weird to explain that.
+
+i'll make an example later.
