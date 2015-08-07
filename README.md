@@ -34,6 +34,28 @@ there are different data types but right now there's 3 main ones we'll worry abo
 
 anyways hopefully you understand basic variable declaration. it's pretty simple to be quite honest
 
+oh also you'll use arrays and dictionaries.
+
+arrays are just a box filled with things. strings, numbers, booleans. whatever, it can be anything (in python!!). everything you add gets a number as a sort of label, and it's sort of like a lineup. numbers start at 0 (not 1!!). the first object is #0, then #1, then #2, and so on. this is how pretty much every language does things. indexing af
+
+to create an array just surround the variable in `[]` and throw whatever you'd like in there, seperated by commas:
+
+```python
+names = ['josh', 'adam', 500, True]
+print(names[2]) # would print 500
+```
+
+then to get the value in the array you can just use the variable name followed by [index], index being that number. so if you want to get the first thing in the array: `names[0]`, and if you wanted to get the fourth thing in the array: `names[3]`, etc, etc.
+
+dictionaries work in a cleaner fashion as far as organization goes, so if you want things labeled better they'll be nice to use. dictionaries work similar to real dictionaries. basically think of arrays but instead of every value having an automatically assigned number, you get to define your own string to label the object. you can do this with a variable declaration and then surrounding your shit in `{}`. make the label a string, then a colon (`:`), then your value. to access the variable just throw the variable name down followed by some square brackets (`[]`) just like arrays. instead of the number you need to supply (the index) for arrays, just supply it with the name of the label/keys (they're actually called keys!!! nice)
+
+```python
+person = {'name': 'josh'}
+print(person['name'])
+```
+
+sweet so you know data types and shit let's move on
+
 ## basic functions
 say you wanna log some text or whatnot
 
@@ -179,8 +201,20 @@ hopefully you understand the block of code above now. let's get into shit like `
 
 ### __init__()
 
-`__init__()` is one hell of a method because it's defined already in python. you throw it in any class and it automatically runs when an instance is created. meaning if we defined a print statement inside `__init__()`, it would run once we go `josh = Person()`, or whatever the variable and class are. printing text on instantiating (creating an instance) isn't too helpful, though. what we want to do here is usually throw parameters into variables we can use in the class.
+`__init__()` is one hell of a method. it's defined already in python. you throw it in any class and it automatically runs when an instance is created. meaning if we defined a print statement inside `__init__()`, it would run once we go `josh = Person()`, or whatever the variable and class are. printing text on instantiating (creating an instance) isn't too helpful, though. what we want to do here is usually throw parameters into variables we can use in the class.
 
 so say you wanted to define a Person class but you don't want to define the name of the person yet (because that's like hardcoding the blueprint, we want to leave it as definable at instantiation as possible). we can use the `__init__()` method for this to define variables in self. init takes the parameters you want to give `Person()`.  kinda weird to explain that.
 
-i'll make an example later.
+if we wanted our instantiation (in this case, josh) to have a name attribute, we would write `self.name = name`. this assigns the instance's variable "name" to the variable supplied when declared. hopefully that makes more sense with this example:
+
+```python
+class Person():
+	def __init__(self, name, age):
+		self.name = name
+		self.age  = age
+	def greeting(self):
+		print("my name is {} and i am {} years old".format(self.name, self.age))
+
+josh = Person('josh', 16)
+josh.greeting()
+```
