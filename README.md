@@ -1,5 +1,13 @@
 # python
 
+tutorials
+---------
+
+http://www.learnpython.org/
+
+my tutorial
+-----------
+
 alright so you wanna learn python. sweet. let's jump in
 
 ## variables
