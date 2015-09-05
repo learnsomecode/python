@@ -10,13 +10,20 @@ my tutorial
 
 alright so you wanna learn python. sweet. let's jump in
 
+## quick terminology (I'll add more as I go)
+- mutable: editable/changeable
+- immutable: not editable/not changeable
+
 ## variables
 we can start with variable declaration
 
 ```python
-name = "josh"
-age = 16
-rad = True
+name = "josh" # strings
+age = 16 # numbers
+rad = True # booleans
+things = (1, 2, 3) # tuples
+groceries = ['eggs', 'milk', 'bread', 'the stolen dead souls of those whom I encapsulate'] # lists
+b = {'thing': 1, 'thinnnn': 'k'} # dictionaries
 ```
 
 variables can be defined with `name = value`. variable names can't be shit like `$123$$YOYOFUCk` so don't try making it that. just use letters (and numbers if need be but don't start a variable with a number)
@@ -34,35 +41,28 @@ variable names that don't work:
 - `8888888`
 - `~ffffffffffff`
 
-there are different data types but right now there's 3 main ones we'll worry about:
+there are different data types
 
-1. strings (just a collection of characters. "josh" is a string, for example. numbers CAN be strings but we'll get into that later. strings are always surrounded by double quotes (""))
-2. integers (a fucking integer. what did you think? 1 is an integer. integers are not surrounded by quotes or anything at all quite frankly)
-3. booleans (a true or false value. `True` or `False`. There's no Maybe. don't surround booleans in quotes unless you want a string like "True" or some shit)
+1. strings (just a collection of characters. "josh" is a string, for example. numbers CAN be strings but we'll get into that later. strings are always surrounded by double quotes ("")). strings are mutable.
+2. integers (a fucking integer. what did you think? 1 is an integer. integers are not surrounded by quotes or anything at all quite frankly). integers are mutable.
+3. booleans (a true or false value. `True` or `False`. There's no Maybe. don't surround booleans in quotes unless you want a string like "True" or some shit). booleans are mutable.
+4. arrays are just a box filled with things. strings, numbers, booleans. whatever, it can be anything (in python!!). everything you add gets a number as a sort of label, and it's sort of like a lineup. numbers start at 0 (not 1!!). the first object is #0, then #1, then #2, and so on. this is how pretty much every language does things. indexing af. arrays are mutable.
+5. tuples are, for the most part, just immutable arrays. just think of them like that. tuples are immutable.
+6. dictionaries are just arrays with strings as labels instead of numbers. this makes things easier in some cases.
 
-anyways hopefully you understand basic variable declaration. it's pretty simple to be quite honest
-
-oh also you'll use arrays and dictionaries.
-
-arrays are just a box filled with things. strings, numbers, booleans. whatever, it can be anything (in python!!). everything you add gets a number as a sort of label, and it's sort of like a lineup. numbers start at 0 (not 1!!). the first object is #0, then #1, then #2, and so on. this is how pretty much every language does things. indexing af
-
-to create an array just surround the variable in `[]` and throw whatever you'd like in there, seperated by commas:
-
+### using variables
 ```python
-names = ['josh', 'adam', 500, True]
-print(names[2]) # would print 500
+name = "josh" # strings (you can comment something out with the # sign)
+name = "joe" # we can reassign strings too. they're mutable
+age  = 16 # assigning variables to numbers works good ((:
+isTired = True # variables can be assigned to booleans (True/False)
+things = ['bbbbb', 11111, False] # Defining a list
+things[0] = 'aaaahahaha' # Changes the first ([0]) object to string "aaaahahaha"
+josh = {'name':name, 'age':age, 'tired':isTired, 'location': 'Vancouver, BC'} # Assigning dictionaries which use key values
+josh['age'] = 10 # I'm 10 now, and this works because dictionaries are mutable
+pants = ('straight', 'skinny', 'boot cut') # Defining a tuple (you can use () if you want)
+pants[0] = 'funky' # Returns error: TypeError: 'tuple' object does not support item assignment
 ```
-
-then to get the value in the array you can just use the variable name followed by [index], index being that number. so if you want to get the first thing in the array: `names[0]`, and if you wanted to get the fourth thing in the array: `names[3]`, etc, etc.
-
-dictionaries work in a cleaner fashion as far as organization goes, so if you want things labeled better they'll be nice to use. dictionaries work similar to real dictionaries. basically think of arrays but instead of every value having an automatically assigned number, you get to define your own string to label the object. you can do this with a variable declaration and then surrounding your shit in `{}`. make the label a string, then a colon (`:`), then your value. to access the variable just throw the variable name down followed by some square brackets (`[]`) just like arrays. instead of the number you need to supply (the index) for arrays, just supply it with the name of the label/keys (they're actually called keys!!! nice)
-
-```python
-person = {'name': 'josh'}
-print(person['name'])
-```
-
-sweet so you know data types and shit let's move on
 
 ## basic functions
 say you wanna log some text or whatnot
@@ -224,5 +224,23 @@ class Person():
 		print("my name is {} and i am {} years old".format(self.name, self.age))
 
 josh = Person('josh', 16)
-josh.greeting()
+josh.greeting() # my name is josh and i am 16 years old
 ```
+
+also a nice way to clean this up (I personally like doing this) is to use `*` or `**` when using variables in parameters. what these do is allow an arbitrary number of arguments to functions. `*` gives back a tuple and `**` gives back a dictionary. we can use this in this case to clean things up
+
+
+```python
+class Person():
+	def __init__(self, name, age):
+		self.name = name
+		self.age  = age
+	def greeting(self):
+		vars = {'name': self.name, 'age': self.age}
+		print("my name is {name} and i am {age} years old".format(**vars))
+
+josh = Person('josh', 16)
+josh.greeting() # my name is josh and i am 16 years old
+```
+
+in this case the `**` operator is essentially unpacking our dictionary for us and using it with the `.format` function. with this function we can include variable names in the `{}`, meaning that if we include a variable name specified in a dictionary and then use that dictionary with the `**` operator, we can unpack and use it.
